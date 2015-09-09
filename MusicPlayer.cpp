@@ -26,11 +26,18 @@ void MusicPlayer::playTrack(unsigned int track[][3], unsigned int numNotes)
 {
   _track = track;
   currNote = 0;
-  _numNotes = 19;
+  _numNotes = numNotes;
   currState = ON_FOR;
   prevTime = millis();
   currDuration = _track[currNote][ON_FOR];
   tone(_pin, _track[currNote][PITCH]);
+}
+
+bool MusicPlayer::isDonePlaying()
+{
+  if(currState==NO_TRACK_PLAYING)
+    return true;
+  else return false;
 }
 
 void MusicPlayer::updateTrack()
